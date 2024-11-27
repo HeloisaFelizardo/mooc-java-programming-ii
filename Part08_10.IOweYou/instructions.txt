@@ -1,0 +1,33 @@
+Crie uma classe chamada IOUque possua os seguintes métodos:
+
+construtor public IOU()cria um novo IOU
+public void setSum(String toWhom, double amount)salva o valor devido e a pessoa devida no IOU.
+public double howMuchDoIOweTo(String toWhom)retorna o valor devido à pessoa cujo nome é fornecido como parâmetro. 
+Se a pessoa
+não pode ser encontrado, ele retorna 0.
+
+A classe pode ser usada assim:
+
+IOU mattsIOU = new IOU();
+mattsIOU.setSum("Arthur", 51.5);
+mattsIOU.setSum("Michael", 30);
+
+System.out.println(mattsIOU.howMuchDoIOweTo("Arthur"));
+System.out.println(mattsIOU.howMuchDoIOweTo("Michael"));
+O código acima imprime:
+
+Exemplo de saída
+51,5 30,0
+
+Tenha cuidado em situações em que uma pessoa não deve nada a ninguém.
+
+Atenção! O IOU não se preocupa com dívidas antigas. Quando você define uma nova quantia devida a 
+uma pessoa quando já existe algum dinheiro devido à mesma pessoa, a dívida antiga é esquecida.
+
+IOU mattsIOU = new IOU();
+mattsIOU.setSum("Arthur", 51.5);
+mattsIOU.setSum("Arthur", 10.5);
+
+System.out.println(mattsIOU.howMuchDoIOweTo("Arthur"));
+Exemplo de saída
+10,5

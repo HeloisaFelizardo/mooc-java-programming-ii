@@ -1,0 +1,8 @@
+In the main-method create a new HashMap<String,String> object. Store the names and nicknames of the following people in 
+
+matthew's nickname is matt
+michael's nickname is mix
+arthur's nickname is artie
+Then get Matthew's nickname from the hashmap, and print it.
+
+There is no automated tests for this exercise. Just submit the exercise when you think it works as it should.

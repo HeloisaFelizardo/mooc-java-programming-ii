@@ -1,0 +1,23 @@
+O modelo de exercício contém uma classe Program. Implemente os seguintes métodos de classe na classe:
+
+public static void printKeys(HashMap<String,String> hashmap), imprime todas as chaves no hashmap fornecidas como parâmetro.
+public static void printKeysWhere(HashMap<String,String> hashmap, String text)imprime as chaves no hashmap fornecidas como
+ parâmetro, que contém a string fornecida como parâmetro.
+public static void printValuesOfKeysWhere(HashMap<String,String> hashmap, String text), imprime os valores no hashmap 
+fornecido cujas chaves contêm a string fornecida.
+Exemplo de uso dos métodos de classe:
+
+HashMap<String, String> hashmap = new HashMap<>();
+hashmap.put("f.e", "for example");
+hashmap.put("etc.", "and so on");
+hashmap.put("i.e", "more precisely");
+
+printKeys(hashmap);
+System.out.println("---");
+printKeysWhere(hashmap, "i");
+System.out.println("---");
+printValuesOfKeysWhere(hashmap, ".e");
+Exemplo de saída
+
+fe etc. ou seja --- ou seja --- por exemplo, mais precisamente
+Atenção! A ordem da saída pode variar, pois a implementação de hashmaps não garante a ordem dos objetos nele contidos.

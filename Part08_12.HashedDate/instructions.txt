@@ -1,0 +1,4 @@
+Vamos expandir a SimpleDateclasse do exercício anterior para ter também um hashCodemétodo próprio.
+
+Crie um método public int hashCode()para a SimpleDateclasse, que calcula um hash para o objeto SimpleDate. 
+Implemente o cálculo do hash de forma que haja o menor número possível de hashes semelhantes entre os anos 1900 e 2100.

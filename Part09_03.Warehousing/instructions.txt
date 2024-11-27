@@ -1,0 +1,172 @@
+O modelo de exercício contém uma classe Warehouse, que possui os seguintes construtores e métodos:
+
+Armazém público(capacidade dupla) - Cria um armazém vazio, que tem como parâmetro a capacidade fornecida; 
+uma capacidade inválida (<=0) cria um armazém inútil, com capacidade 0.
+public double getBalance() - Retorna o saldo do armazém, ou seja, a capacidade ocupada pelos itens do armazém.
+public double getCapacity() - Retorna a capacidade total do warehouse (ou seja, aquela que foi fornecida no construtor).
+public double howMuchSpaceLeft() - Retorna um valor informando quanto espaço resta no warehouse.
+public void addToWarehouse(double amount) - Adiciona a quantidade desejada ao armazém; se o valor for negativo nada muda,
+ e se não couber tudo o armazém enche e o resto é “jogado fora” / “transborda”.
+public double takeFromWarehouse(double amount) - Retire a quantia desejada do armazém. 
+O método retorna muito que realmente obtemos . Se o valor desejado for negativo, nada muda e retornamos 0. 
+Se o valor desejado for maior que o valor que o armazém contém, pegamos tudo o que há para levar e o armazém fica vazio.
+public String toString() - Retorna o estado do objeto representado como uma string como estabalance = 64.5, 
+space left 123.5
+Neste exercício construímos variações de um armazém com base na Warehouseclasse.
+
+Armazém de produtos, etapa 1
+A classe Warehousetrata das funções relacionadas à quantidade de um produto. 
+Agora queremos um nome de produto para o produto e uma maneira de lidar com o nome. 
+Vamos escrever ProductWarehouse como uma subclasse de Warehouse! 
+Primeiro, criaremos apenas uma variável de objeto privada para o nome do produto, um construtor e um getter 
+para o campo de nome:
+
+public ProductWarehouse(String productName, double capacidade) - Cria um armazém de produtos vazio. 
+O nome do produto e a capacidade do armazém são fornecidos como parâmetros.
+public String getName() - Retorna o nome do produto.
+Lembre-se de como um construtor pode executar o construtor da superclasse como sua primeira ação!
+
+Exemplo de uso:
+
+ProductWarehouse juice = new ProductWarehouse("Juice", 1000.0);
+juice.addToWarehouse(1000.0);
+juice.takeFromWarehouse(11.3);
+System.out.println(juice.getName()); // Juice
+System.out.println(juice);           // balance = 988.7, space left 11.3
+Exemplo de saída
+Saldo de suco = 988,7, espaço restante 11,3
+
+Armazém de produtos, etapa 2
+Como podemos ver no exemplo anterior, o objeto toString()herdado pelo objeto ProductWarehouse (obviamente!) 
+não sabe nada sobre o nome do produto. Algo deve ser feito! Vamos também adicionar um setter para o nome do 
+produto enquanto estamos nisso:
+
+public void setName(String newName) - define um novo nome para o produto.
+public String toString() - Retorna o estado do objeto representado como uma string como estaJuice: balance = 64.5, 
+space left 123.5
+O novo toString()método poderia ser escrito usando getters herdados da superclasse, o que daria acesso a valores de 
+campos herdados, mas ainda ocultos. Entretanto, a superclasse já possui a funcionalidade desejada para fornecer uma 
+representação de string do estado do warehouse, então por que se preocupar em recriar essa funcionalidade? 
+Apenas aproveite o herdado toString().
+
+Lembre-se de como chamar um método substituído em uma subclasse!
+
+Exemplo de uso:
+
+ProductWarehouse juice = new ProductWarehouse("Juice", 1000.0);
+juice.addToWarehouse(1000.0);
+juice.takeFromWarehouse(11.3);
+System.out.println(juice.getName()); // Juice
+juice.addToWarehouse(1.0);
+System.out.println(juice);           // Juice: balance = 989.7, space left 10.299999999999955
+Exemplo de saída
+Suco Suco: saldo = 989,7, espaço restante 10,299999999999955
+
+Histórico de alterações, etapa 1
+Às vezes pode ser útil saber como o estoque de um produto muda ao longo do tempo: O estoque costuma estar baixo? 
+Geralmente estamos no limite? As mudanças no estoque são grandes ou pequenas? Etc. Assim, devemos dar à 
+ProductWarehouseturma a capacidade de lembrar as mudanças na quantidade de um produto.
+
+Vamos começar criando uma ferramenta que auxilia na funcionalidade desejada.
+
+É claro que o armazenamento do histórico de alterações poderia ter sido feito usando um ArrayList<Double>objeto da 
+classe ProductWarehouse , porém, queremos nossa própria ferramenta especializada para esse fim. 
+A ferramenta deve ser implementada encapsulando o ArrayList<Double>objeto.
+
+Construtores públicos e métodos da ChangeHistoryclasse:
+
+public ChangeHistory() cria um objeto vazio ChangeHistory.
+public void add(double status) adiciona o status fornecido como o valor mais recente a ser lembrado no histórico 
+de alterações.
+public void clear() esvazia o histórico.
+public String toString() retorna a representação em string do histórico de alterações. A representação de string 
+fornecida pela classe ArrayList é suficiente.
+Histórico de alterações, etapa 2
+Desenvolva a ChangeHistoryclasse adicionando métodos de análise:
+
+public double maxValue() retorna o maior valor no histórico de alterações. Se o histórico estiver vazio, o método 
+deverá retornar zero.
+public double minValue() retorna o menor valor no histórico de alterações. Se o histórico estiver vazio, o método 
+deverá retornar zero.
+public double Average() retorna a média dos valores no histórico de alterações. Se o histórico estiver vazio, o 
+método deverá retornar zero.
+Os métodos não devem modificar a ordem da lista encapsulada.
+
+Armazém de produtos com histórico, etapa 1
+Implemente ProductWarehouseWithHistorycomo uma subclasse de ProductWarehouse. Para além de todas as funcionalidades 
+anteriores este novo armazém disponibiliza também serviços relacionados com o histórico de alterações do inventário 
+do armazém. O histórico é gerenciado usando o ChangeHistoryobjeto.
+
+Construtores e métodos públicos:
+
+public ProductWarehouseWithHistory(String productName, double capacidade, double InitialBalance) cria um armazém de 
+produtos. O nome do produto, a capacidade e o saldo inicial são fornecidos como parâmetros.
+Defina o saldo inicial como o saldo inicial do armazém, bem como o primeiro valor do histórico de alterações.
+
+public String history() retorna o histórico do produto assim [0.0, 119.2, 21.2]. Use a representação de string do objeto 
+ChangeHistory como está.
+NB nesta versão inicial o histórico ainda não está funcionando corretamente; atualmente ele lembra apenas o saldo inicial.
+
+Exemplo de uso:
+
+// the usual:
+ProductWarehouseWithHistory juice = new ProductWarehouseWithHistory("Juice", 1000.0, 1000.0);
+juice.takeFromWarehouse(11.3);
+System.out.println(juice.getName()); // Juice
+juice.addToWarehouse(1.0);
+System.out.println(juice);           // Juice: balance = 989.7, space left 10.3
+
+// etc
+
+// however, history() still doesn't work properly:
+System.out.println(juice.history()); // [1000.0]
+// so we only get the initial state of the history set by the constructor...
+Exemplo de saída
+
+Suco Suco: saldo = 989,7, espaço restante 10,299999999999955 [1000,0]
+Armazém de produtos com histórico, etapa 2
+É hora de fazer história! A primeira versão não conhecia nada além do estado inicial da história. 
+Expanda a classe com os seguintes métodos
+
+public void addToWarehouse(double amount) funciona exatamente como o método na Warehouseclasse, 
+mas também registramos o estado alterado no histórico. Obs: o valor registrado no histórico deverá ser o saldo do 
+armazém após a adição e não o valor adicionado!
+public double takeFromWarehouse(double amount) funciona exatamente como o método na Warehouseclasse, mas também 
+registramos o estado alterado no histórico. Obs: o valor registrado no histórico deverá ser o saldo do armazém 
+após a retirada e não o valor retirado!
+Exemplo de uso:
+
+// the usual:
+ProductWarehouseWithHistory juice = new ProductWarehouseWithHistory("Juice", 1000.0, 1000.0);
+juice.takeFromWarehouse(11.3);
+System.out.println(juice.getName()); // Juice
+juice.addToWarehouse(1.0);
+System.out.println(juice);           // Juice: balance = 989.7, space left 10.3
+
+// etc
+
+// and now we have the history:
+System.out.println(juice.history()); // [1000.0, 988.7, 989.7]
+Exemplo de saída
+
+Suco Suco: saldo = 989,7, espaço restante 10,299999999999955 [1000,0, 988,7, 989,7]
+Lembre-se de como um método substituído pode tirar vantagem do método substituído!
+
+Armazém de produtos com histórico, etapa 3
+Expanda a classe com o método
+
+public void printAnalysis() , que imprime informações relacionadas ao histórico do produto da forma apresentada no exemplo.
+Exemplo de uso:
+
+ProductWarehouseWithHistory juice = new ProductWarehouseWithHistory("Juice", 1000.0, 1000.0);
+juice.takeFromWarehouse(11.3);
+juice.addToWarehouse(1.0);
+//System.out.println(juice.history()); // [1000.0, 988.7, 989.7]
+
+juice.printAnalysis();
+Exemplo de saída
+Produto: 
+Suco Histórico: [1000,0, 988,7, 989,7] 
+Maior quantidade de produto: 1000,0 
+Menor quantidade de produto: 988,7 
+Média: 992,8

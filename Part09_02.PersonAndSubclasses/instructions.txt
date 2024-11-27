@@ -1,0 +1,96 @@
+Person
+Create a class Person. The class must work as follows:
+
+Person ada = new Person("Ada Lovelace", "24 Maddox St. London W1S 2QN");
+Person esko = new Person("Esko Ukkonen", "Mannerheimintie 15 00100 Helsinki");
+System.out.println(ada);
+System.out.println(esko);
+Sample output
+
+Ada Lovelace
+  24 Maddox St. London W1S 2QN
+Esko Ukkonen
+  Mannerheimintie 15 00100 Helsinki
+Student
+Create a class Student, which inherits the class Person.
+
+At creation, a student has 0 study credits. Every time a student studies, the amount of study credits goes up. 
+The class must act as follows:
+
+Student ollie = new Student("Ollie", "6381 Hollywood Blvd. Los Angeles 90028");
+System.out.println(ollie);
+System.out.println("Study credits " + ollie.credits());
+ollie.study();
+System.out.println("Study credits "+ ollie.credits());
+Sample output
+
+Ollie
+  6381 Hollywood Blvd. Los Angeles 90028
+Study credits 0
+Study credits 1
+Student's toString
+In the previous task, Studentinherits the toString method from the class Person. 
+However, you can also overwrite an inherited method, replacing it with your own version. 
+Write a version of toString method specifically for the Student class. The method must act as follows:
+
+Student ollie = new Student("Ollie", "6381 Hollywood Blvd. Los Angeles 90028");
+System.out.println(ollie);
+ollie.study();
+System.out.println(ollie);
+Sample output
+
+Ollie
+  6381 Hollywood Blvd. Los Angeles 90028
+  Study credits 0
+Ollie
+  6381 Hollywood Blvd. Los Angeles 90028
+  Study credits 1
+Teacher
+Create a class Teacher, which inherits the class Person.
+
+The class must act as follows:
+
+Teacher ada = new Teacher("Ada Lovelace", "24 Maddox St. London W1S 2QN", 1200);
+Teacher esko = new Teacher("Esko Ukkonen", "Mannerheimintie 15 00100 Helsinki", 5400);
+System.out.println(ada);
+System.out.println(esko);
+
+Student ollie = new Student("Ollie", "6381 Hollywood Blvd. Los Angeles 90028");
+
+int i = 0;
+while (i < 25) {
+  ollie.study();
+  i = i + 1;
+}
+System.out.println(ollie);
+Sample output
+
+Ada Lovelace
+  24 Maddox St. London W1S 2QN
+  salary 1200 euro/month
+Esko Ukkonen
+  Mannerheimintie 15 00100 Helsinki
+  salary 5400 euro/month
+Ollie
+  6381 Hollywood Blvd. Los Angeles 90028
+  Study credits 25
+List all Persons
+Write a method public static void printPersons(ArrayList<Person> persons) in the Main class. 
+The method prints all the persons on the list given as the parameter. 
+Method must act as follows when invoked from the main method:
+
+public static void main(String[] args) {
+    ArrayList<Person> persons = new ArrayList<Person>();
+    persons.add(new Teacher("Ada Lovelace", "24 Maddox St. London W1S 2QN", 1200));
+    persons.add(new Student("Ollie", "6381 Hollywood Blvd. Los Angeles 90028"));
+
+    printPersons(persons);
+}
+Sample output
+
+Ada Lovelace
+  24 Maddox St. London W1S 2QN
+  salary 1200 euro/month
+Ollie
+  6381 Hollywood Blvd. Los Angeles 90028
+  Study credits 0
