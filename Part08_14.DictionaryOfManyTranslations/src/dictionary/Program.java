@@ -1,8 +1,9 @@
+package dictionary;
 
 public class Program {
 
-    public static void main(String[] args) {
-        DictionaryOfManyTranslations dictionary = new DictionaryOfManyTranslations();
+	public static void main(String[] args) {
+		DictionaryOfManyTranslations dictionary = new DictionaryOfManyTranslations();
         dictionary.add("lie", "maata");
         dictionary.add("lie", "valehdella");
 
@@ -12,5 +13,6 @@ public class Program {
         System.out.println(dictionary.translate("lie"));
         dictionary.remove("bow");
         System.out.println(dictionary.translate("bow"));
-    }
+	}
+
 }
