@@ -47,6 +47,10 @@ public class MainProgram {
 
 		books.sort(Comparator.comparingInt(Book::getAge).thenComparing(Book::getName));
 
+		//Method Reference
 		books.forEach(System.out::println);
+		
+		//Lambda
+		books.forEach((number) -> System.out.println(number));
 	}
 }

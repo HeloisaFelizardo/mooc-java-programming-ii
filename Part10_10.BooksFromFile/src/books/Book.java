@@ -31,7 +31,6 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return name + "," + publishingYear + "," + pageCount + ","
-				+ author;
-	}		
+		return name + "," + publishingYear + "," + pageCount + "," + author;
+	}
 }

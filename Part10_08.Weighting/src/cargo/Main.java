@@ -1,5 +1,7 @@
 package cargo;
 
+import java.util.Comparator;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -30,11 +32,17 @@ public class Main {
 		hold.printItems();
 
 		// Encontrando a mala mais pesada no compartimento
-        Suitcase heaviestSuitcase = hold.getSuitcases().stream()
-            .max((s1, s2) -> Integer.compare(s1.totalWeight(), s2.totalWeight()))
-            .orElse(null);
+		Suitcase heaviestSuitcase = hold.getSuitcases().stream()
+				.max(Comparator.comparingInt(Suitcase::totalWeight)) // Usando method reference
+				.orElse(null);
 
-        System.out.println("Heaviest suitcase: " + (heaviestSuitcase != null ? heaviestSuitcase : "No suitcases"));
+		// Usando Lambda
+		/*
+		 * Suitcase heaviestSuitcase = hold.getSuitcases().stream() .max((s1, s2) ->
+		 * Integer.compare(s1.totalWeight(), s2.totalWeight())) .orElse(null);
+		 */
+
+		System.out.println("Heaviest suitcase: " + (heaviestSuitcase != null ? heaviestSuitcase : "No suitcases"));
 	}
 
 }
